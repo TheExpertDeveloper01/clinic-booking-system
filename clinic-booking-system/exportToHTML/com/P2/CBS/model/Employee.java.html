@@ -1,0 +1,305 @@
+<html>
+<head>
+<title>Employee.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #c3cee3;}
+.s2 { color: #89ddff;}
+.s3 { color: #c3e88d;}
+.s4 { color: #7f6451; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#200000">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Employee.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">P2</span><span class="s2">.</span><span class="s1">CBS</span><span class="s2">.</span><span class="s1">model</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">jakarta</span><span class="s2">.</span><span class="s1">persistence</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalDate</span><span class="s2">;</span>
+
+<span class="s1">@Entity</span>
+<span class="s1">@Table</span><span class="s2">(</span><span class="s1">name </span><span class="s2">= </span><span class="s3">&quot;employees&quot;</span><span class="s2">)</span>
+<span class="s0">public class </span><span class="s1">Employee </span><span class="s2">{</span>
+
+    <span class="s1">@Id</span>
+    <span class="s1">@GeneratedValue</span><span class="s2">(</span><span class="s1">strategy </span><span class="s2">= </span><span class="s1">GenerationType</span><span class="s2">.</span><span class="s1">IDENTITY</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">Long id</span><span class="s2">;</span>
+
+    <span class="s1">@Column</span><span class="s2">(</span><span class="s1">nullable </span><span class="s2">= </span><span class="s0">false</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">String firstName</span><span class="s2">;</span>
+
+    <span class="s1">@Column</span><span class="s2">(</span><span class="s1">nullable </span><span class="s2">= </span><span class="s0">false</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">String lastName</span><span class="s2">;</span>
+
+    <span class="s1">@Column</span><span class="s2">(</span><span class="s1">name </span><span class="s2">= </span><span class="s3">&quot;date_of_birth&quot;</span><span class="s2">, </span><span class="s1">columnDefinition </span><span class="s2">= </span><span class="s3">&quot;DATE&quot;</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">LocalDate dateOfBirth</span><span class="s2">;</span>
+
+    <span class="s4">// Constructors</span>
+    <span class="s0">public </span><span class="s1">Employee</span><span class="s2">() {}</span>
+
+    <span class="s0">public </span><span class="s1">Employee</span><span class="s2">(</span><span class="s1">String firstName</span><span class="s2">, </span><span class="s1">String lastName</span><span class="s2">, </span><span class="s1">LocalDate dateOfBirth</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">firstName </span><span class="s2">= </span><span class="s1">firstName</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">lastName </span><span class="s2">= </span><span class="s1">lastName</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">dateOfBirth </span><span class="s2">= </span><span class="s1">dateOfBirth</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s4">// Getters and setters</span>
+    <span class="s0">public </span><span class="s1">Long getId</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">id</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setId</span><span class="s2">(</span><span class="s1">Long id</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id </span><span class="s2">= </span><span class="s1">id</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getFirstName</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">firstName</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setFirstName</span><span class="s2">(</span><span class="s1">String firstName</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">firstName </span><span class="s2">= </span><span class="s1">firstName</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getLastName</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">lastName</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setLastName</span><span class="s2">(</span><span class="s1">String lastName</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">lastName </span><span class="s2">= </span><span class="s1">lastName</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">LocalDate getDateOfBirth</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">dateOfBirth</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setDateOfBirth</span><span class="s2">(</span><span class="s1">LocalDate dateOfBirth</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">dateOfBirth </span><span class="s2">= </span><span class="s1">dateOfBirth</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+
+<span class="s4">//package com.P2.CBS.model;</span>
+<span class="s4">//</span>
+<span class="s4">//import jakarta.persistence.*;</span>
+<span class="s4">//import java.time.LocalDate;</span>
+<span class="s4">//import org.hibernate.annotations.JdbcTypeCode;</span>
+<span class="s4">//import org.hibernate.type.SqlTypes;</span>
+<span class="s4">//</span>
+<span class="s4">//@Entity</span>
+<span class="s4">//@Table(name = &quot;employees&quot;)</span>
+<span class="s4">//public class Employee {</span>
+<span class="s4">//</span>
+<span class="s4">//    @Id</span>
+<span class="s4">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s4">//    private Long id;</span>
+<span class="s4">//</span>
+<span class="s4">//    @Column(nullable = false)</span>
+<span class="s4">//    private String firstName;</span>
+<span class="s4">//</span>
+<span class="s4">//    @Column(nullable = false)</span>
+<span class="s4">//    private String lastName;</span>
+<span class="s4">//</span>
+<span class="s4">//    @Column(name = &quot;date_of_birth&quot;)</span>
+<span class="s4">//    private LocalDate dateOfBirth;</span>
+<span class="s4">//</span>
+<span class="s4">//    // Constructors</span>
+<span class="s4">//    public Employee() {}</span>
+<span class="s4">//</span>
+<span class="s4">//    public Employee(String firstName, String lastName, LocalDate dateOfBirth) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//       // this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    // Getters and setters</span>
+<span class="s4">//    public Long getId() {</span>
+<span class="s4">//        return id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setId(Long id) {</span>
+<span class="s4">//        this.id = id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getFirstName() {</span>
+<span class="s4">//        return firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setFirstName(String firstName) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getLastName() {</span>
+<span class="s4">//        return lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setLastName(String lastName) {</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">////    public LocalDate getDateOfBirth() {</span>
+<span class="s4">////        return dateOfBirth;</span>
+<span class="s4">////    }</span>
+<span class="s4">////</span>
+<span class="s4">////    public void setDateOfBirth(LocalDate dateOfBirth) {</span>
+<span class="s4">////        this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">////    }</span>
+<span class="s4">//}</span>
+<span class="s4">//</span>
+
+
+<span class="s4">//package com.P2.CBS.model;</span>
+<span class="s4">//</span>
+<span class="s4">//import jakarta.persistence.*;</span>
+<span class="s4">//import java.time.LocalDate;</span>
+<span class="s4">//import jakarta.validation.constraints.NotNull;</span>
+<span class="s4">//</span>
+<span class="s4">//@Entity</span>
+<span class="s4">//@Table(name = &quot;employees&quot;)</span>
+<span class="s4">//public class Employee {</span>
+<span class="s4">//</span>
+<span class="s4">//    @Id</span>
+<span class="s4">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s4">//    @NotNull</span>
+<span class="s4">//    private Long id;</span>
+<span class="s4">//</span>
+<span class="s4">//    @NotNull</span>
+<span class="s4">//    @Column(nullable = false)</span>
+<span class="s4">//    private String firstName;</span>
+<span class="s4">//</span>
+<span class="s4">//    @NotNull</span>
+<span class="s4">//    @Column(nullable = false)</span>
+<span class="s4">//    private String lastName;</span>
+<span class="s4">//</span>
+<span class="s4">//    // This field is optional, add it if necessary</span>
+<span class="s4">//    private LocalDate dateOfBirth;</span>
+<span class="s4">//</span>
+<span class="s4">//    // You can add other fields as needed (e.g., email, phone number)</span>
+<span class="s4">//</span>
+<span class="s4">//    // Default constructor</span>
+<span class="s4">//    public Employee() {}</span>
+<span class="s4">//</span>
+<span class="s4">//    // Constructor with parameters</span>
+<span class="s4">//    public Employee(String firstName, String lastName, LocalDate dateOfBirth) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//        this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    // Getters and setters</span>
+<span class="s4">//    public Long getId() {</span>
+<span class="s4">//        return id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setId(Long id) {</span>
+<span class="s4">//        this.id = id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getFirstName() {</span>
+<span class="s4">//        return firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setFirstName(String firstName) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getLastName() {</span>
+<span class="s4">//        return lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setLastName(String lastName) {</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public LocalDate getDateOfBirth() {</span>
+<span class="s4">//        return dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setDateOfBirth(LocalDate dateOfBirth) {</span>
+<span class="s4">//        this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//}</span>
+
+
+<span class="s4">//package com.P2.CBS.model;</span>
+<span class="s4">//</span>
+<span class="s4">//import jakarta.persistence.*;</span>
+<span class="s4">//import java.time.LocalDate;</span>
+<span class="s4">//import com.P2.CBS.converter.LocalDateAttributeConverter;</span>
+<span class="s4">//</span>
+<span class="s4">//import jakarta.validation.constraints.NotNull;</span>
+<span class="s4">//</span>
+<span class="s4">//@Entity</span>
+<span class="s4">//@Table(name = &quot;employees&quot;)</span>
+<span class="s4">//public class Employee {</span>
+<span class="s4">//</span>
+<span class="s4">////    @Id</span>
+<span class="s4">////    @GeneratedValue(strategy = GenerationType.AUTO)</span>
+<span class="s4">////    private Long id; // Changed from Integer to Long</span>
+<span class="s4">//</span>
+<span class="s4">//    @Id</span>
+<span class="s4">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s4">//    private Long id; // Change Long to Integer</span>
+<span class="s4">//</span>
+<span class="s4">//</span>
+<span class="s4">//    @NotNull</span>
+<span class="s4">//    private String firstName;</span>
+<span class="s4">//</span>
+<span class="s4">//    @NotNull</span>
+<span class="s4">//    private String lastName;</span>
+<span class="s4">//</span>
+<span class="s4">//</span>
+<span class="s4">////    @Convert(converter = LocalDateAttributeConverter.class)</span>
+<span class="s4">////    @Column(name = &quot;date_of_birth&quot;)</span>
+<span class="s4">//    private LocalDate dateOfBirth;</span>
+<span class="s4">//</span>
+<span class="s4">//    // Constructors</span>
+<span class="s4">//    public Employee() {}</span>
+<span class="s4">//</span>
+<span class="s4">//    public Employee(String firstName, String lastName, LocalDate dateOfBirth) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//        this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    // Getters and setters</span>
+<span class="s4">//    public Long getId() {</span>
+<span class="s4">//        return id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setId(Long id) {</span>
+<span class="s4">//        this.id = id;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getFirstName() {</span>
+<span class="s4">//        return firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setFirstName(String firstName) {</span>
+<span class="s4">//        this.firstName = firstName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public String getLastName() {</span>
+<span class="s4">//        return lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setLastName(String lastName) {</span>
+<span class="s4">//        this.lastName = lastName;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public LocalDate getDateOfBirth() {</span>
+<span class="s4">//        return dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//</span>
+<span class="s4">//    public void setDateOfBirth(LocalDate dateOfBirth) {</span>
+<span class="s4">//        this.dateOfBirth = dateOfBirth;</span>
+<span class="s4">//    }</span>
+<span class="s4">//}</span>
+<span class="s4">//</span>
+
+</pre>
+</body>
+</html>

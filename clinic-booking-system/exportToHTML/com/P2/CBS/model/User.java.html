@@ -1,0 +1,401 @@
+<html>
+<head>
+<title>User.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #c3cee3;}
+.s2 { color: #89ddff;}
+.s3 { color: #7f6451; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#200000">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+User.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">P2</span><span class="s2">.</span><span class="s1">CBS</span><span class="s2">.</span><span class="s1">model</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">jakarta</span><span class="s2">.</span><span class="s1">persistence</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">GrantedAuthority</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">userdetails</span><span class="s2">.</span><span class="s1">UserDetails</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Collection</span><span class="s2">;</span>
+
+<span class="s1">@Entity</span>
+<span class="s0">public class </span><span class="s1">User </span><span class="s0">implements </span><span class="s1">UserDetails </span><span class="s2">{</span>
+    <span class="s1">@Id</span>
+    <span class="s1">@GeneratedValue</span><span class="s2">(</span><span class="s1">strategy </span><span class="s2">= </span><span class="s1">GenerationType</span><span class="s2">.</span><span class="s1">IDENTITY</span><span class="s2">)</span>
+    <span class="s0">private </span><span class="s1">Long id</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">String username</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String password</span><span class="s2">;</span>
+
+    <span class="s3">// Other fields...</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">Collection</span><span class="s2">&lt;? </span><span class="s0">extends </span><span class="s1">GrantedAuthority</span><span class="s2">&gt; </span><span class="s1">getAuthorities</span><span class="s2">() {</span>
+        <span class="s3">// Return user authorities</span>
+        <span class="s0">return null</span><span class="s2">; </span><span class="s3">// Replace with actual authorities</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getPassword</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">password</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getUsername</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">username</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">isAccountNonExpired</span><span class="s2">() {</span>
+        <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Customize as needed</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">isAccountNonLocked</span><span class="s2">() {</span>
+        <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Customize as needed</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">isCredentialsNonExpired</span><span class="s2">() {</span>
+        <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Customize as needed</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">isEnabled</span><span class="s2">() {</span>
+        <span class="s0">return true</span><span class="s2">; </span><span class="s3">// Customize as needed</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+
+<span class="s3">//package com.P2.CBS.model;</span>
+<span class="s3">//</span>
+<span class="s3">//import jakarta.persistence.*;</span>
+<span class="s3">//import java.util.List;</span>
+<span class="s3">//</span>
+<span class="s3">//@Entity</span>
+<span class="s3">//@Table(name = &quot;users&quot;)</span>
+<span class="s3">//public class User {</span>
+<span class="s3">//</span>
+<span class="s3">//    @Id</span>
+<span class="s3">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s3">//    private Long id;</span>
+<span class="s3">//</span>
+<span class="s3">//    private String username;</span>
+<span class="s3">//</span>
+<span class="s3">//    private String password;</span>
+<span class="s3">//</span>
+<span class="s3">//    @ElementCollection(fetch = FetchType.EAGER)</span>
+<span class="s3">//    private List&lt;String&gt; authorities;</span>
+<span class="s3">//</span>
+<span class="s3">//    // Constructors, getters, and setters</span>
+<span class="s3">//    public User() {}</span>
+<span class="s3">//</span>
+<span class="s3">//    public User(String username, String password, List&lt;String&gt; authorities) {</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//        this.authorities = authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    // Getters and setters</span>
+<span class="s3">//    public Long getId() {</span>
+<span class="s3">//        return id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setId(Long id) {</span>
+<span class="s3">//        this.id = id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public String getUsername() {</span>
+<span class="s3">//        return username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setUsername(String username) {</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public String getPassword() {</span>
+<span class="s3">//        return password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setPassword(String password) {</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public List&lt;String&gt; getAuthorities() {</span>
+<span class="s3">//        return authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setAuthorities(List&lt;String&gt; authorities) {</span>
+<span class="s3">//        this.authorities = authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//}</span>
+<span class="s3">//</span>
+
+
+
+<span class="s3">//package com.P2.CBS.model;</span>
+<span class="s3">//</span>
+<span class="s3">//import jakarta.persistence.*;</span>
+<span class="s3">//import jakarta.validation.constraints.NotNull;</span>
+<span class="s3">//import org.springframework.security.core.GrantedAuthority;</span>
+<span class="s3">//</span>
+<span class="s3">//import java.util.Collection;</span>
+<span class="s3">//</span>
+<span class="s3">//@Entity</span>
+<span class="s3">//@Table(name = &quot;users&quot;)</span>
+<span class="s3">//public class User {</span>
+<span class="s3">//</span>
+<span class="s3">//    @Id</span>
+<span class="s3">//    @GeneratedValue(strategy = GenerationType.AUTO)</span>
+<span class="s3">//    private Long id;</span>
+<span class="s3">//</span>
+<span class="s3">//    @NotNull</span>
+<span class="s3">//    private String username;</span>
+<span class="s3">//</span>
+<span class="s3">//    @NotNull</span>
+<span class="s3">//    private String password;</span>
+<span class="s3">//</span>
+<span class="s3">//    // Assuming there's a way to get user authorities</span>
+<span class="s3">//    @ManyToMany(fetch = FetchType.EAGER)</span>
+<span class="s3">//    @JoinTable(</span>
+<span class="s3">//            name = &quot;user_authorities&quot;,</span>
+<span class="s3">//            joinColumns = @JoinColumn(name = &quot;user_id&quot;),</span>
+<span class="s3">//            inverseJoinColumns = @JoinColumn(name = &quot;authority_id&quot;)</span>
+<span class="s3">//    )</span>
+<span class="s3">//    private Collection&lt;GrantedAuthority&gt; authorities;</span>
+<span class="s3">//</span>
+<span class="s3">//    // Constructors, getters and setters</span>
+<span class="s3">//    public User() {}</span>
+<span class="s3">//</span>
+<span class="s3">//    public User(String username, String password, Collection&lt;GrantedAuthority&gt; authorities) {</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//        this.authorities = authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    // Getters and setters</span>
+<span class="s3">//    public Long getId() {</span>
+<span class="s3">//        return id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setId(Long id) {</span>
+<span class="s3">//        this.id = id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public String getUsername() {</span>
+<span class="s3">//        return username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setUsername(String username) {</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public String getPassword() {</span>
+<span class="s3">//        return password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setPassword(String password) {</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public Collection&lt;GrantedAuthority&gt; getAuthorities() {</span>
+<span class="s3">//        return authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setAuthorities(Collection&lt;GrantedAuthority&gt; authorities) {</span>
+<span class="s3">//        this.authorities = authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//}</span>
+
+
+<span class="s3">//package com.P2.CBS.model;</span>
+<span class="s3">//</span>
+<span class="s3">//import jakarta.validation.constraints.NotNull;</span>
+<span class="s3">//import org.springframework.security.core.GrantedAuthority;</span>
+<span class="s3">//import org.springframework.security.core.authority.SimpleGrantedAuthority;</span>
+<span class="s3">//import org.springframework.security.core.userdetails.UserDetails;</span>
+<span class="s3">//</span>
+<span class="s3">//import jakarta.persistence.*;</span>
+<span class="s3">//import java.util.Collection;</span>
+<span class="s3">//import java.util.List;</span>
+<span class="s3">//import java.util.stream.Collectors;</span>
+<span class="s3">//</span>
+<span class="s3">//@Entity</span>
+<span class="s3">//@Table(name = &quot;users&quot;)</span>
+<span class="s3">//public class User implements UserDetails {</span>
+<span class="s3">//</span>
+<span class="s3">//    @Id</span>
+<span class="s3">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s3">//    private Long id;</span>
+<span class="s3">//</span>
+<span class="s3">//    @NotNull</span>
+<span class="s3">//    private String username;</span>
+<span class="s3">//</span>
+<span class="s3">//    @NotNull</span>
+<span class="s3">//    private String password;</span>
+<span class="s3">//</span>
+<span class="s3">//    @ManyToMany(fetch = FetchType.EAGER)</span>
+<span class="s3">//    @JoinTable(</span>
+<span class="s3">//            name = &quot;user_roles&quot;,</span>
+<span class="s3">//            joinColumns = @JoinColumn(name = &quot;user_id&quot;),</span>
+<span class="s3">//            inverseJoinColumns = @JoinColumn(name = &quot;role_id&quot;)</span>
+<span class="s3">//    )</span>
+<span class="s3">//    private Collection&lt;Role&gt; roles;</span>
+<span class="s3">//</span>
+<span class="s3">//    // Getters and Setters</span>
+<span class="s3">//</span>
+<span class="s3">//    public Long getId() {</span>
+<span class="s3">//        return id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setId(Long id) {</span>
+<span class="s3">//        this.id = id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public String getUsername() {</span>
+<span class="s3">//        return username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setUsername(String username) {</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public String getPassword() {</span>
+<span class="s3">//        return password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setPassword(String password) {</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {</span>
+<span class="s3">//        return roles.stream()</span>
+<span class="s3">//                .map(role -&gt; new SimpleGrantedAuthority(role.getName()))</span>
+<span class="s3">//                .collect(Collectors.toList());</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setRoles(Collection&lt;Role&gt; roles) {</span>
+<span class="s3">//        this.roles = roles;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isAccountNonExpired() {</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isAccountNonLocked() {</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isCredentialsNonExpired() {</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isEnabled() {</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//}</span>
+
+
+<span class="s3">//package com.P2.CBS.model;</span>
+<span class="s3">//</span>
+<span class="s3">//import org.springframework.security.core.GrantedAuthority;</span>
+<span class="s3">//import org.springframework.security.core.authority.SimpleGrantedAuthority;</span>
+<span class="s3">//</span>
+<span class="s3">//import org.springframework.security.core.userdetails.UserDetails;</span>
+<span class="s3">//</span>
+<span class="s3">//import jakarta.persistence.*;</span>
+<span class="s3">//import java.util.Collection;</span>
+<span class="s3">//</span>
+<span class="s3">//@Entity</span>
+<span class="s3">//@Table(name = &quot;users&quot;)</span>
+<span class="s3">//public class User implements UserDetails {</span>
+<span class="s3">//</span>
+<span class="s3">//    @Id</span>
+<span class="s3">//    @GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+<span class="s3">//    private Long id;</span>
+<span class="s3">//</span>
+<span class="s3">//    private String username;</span>
+<span class="s3">//    private String password;</span>
+<span class="s3">//</span>
+<span class="s3">//    @ManyToMany(fetch = FetchType.EAGER)</span>
+<span class="s3">//    @JoinTable(</span>
+<span class="s3">//            name = &quot;user_roles&quot;,</span>
+<span class="s3">//            joinColumns = @JoinColumn(name = &quot;user_id&quot;),</span>
+<span class="s3">//            inverseJoinColumns = @JoinColumn(name = &quot;role_id&quot;)</span>
+<span class="s3">//    )</span>
+<span class="s3">//    private Collection&lt;SimpleGrantedAuthority&gt; authorities;</span>
+<span class="s3">//</span>
+<span class="s3">//    // Getters and Setters</span>
+<span class="s3">//</span>
+<span class="s3">//    public Long getId(){</span>
+<span class="s3">//        return id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setId(Long id){</span>
+<span class="s3">//        this.id = id;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public String getUsername(){</span>
+<span class="s3">//        return username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setUsername(String username){</span>
+<span class="s3">//        this.username = username;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public String getPassword(){</span>
+<span class="s3">//        return password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setPassword(String password){</span>
+<span class="s3">//        this.password = password;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public Collection&lt;SimpleGrantedAuthority&gt; getAuthorities(){</span>
+<span class="s3">//        return authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    public void setAuthorities(Collection&lt;SimpleGrantedAuthority&gt; authorities){</span>
+<span class="s3">//        this.authorities = authorities;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isAccountNonExpired(){</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isAccountNonLocked(){</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isCredentialsNonExpired(){</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//    @Override</span>
+<span class="s3">//    public boolean isEnabled(){</span>
+<span class="s3">//        return true;</span>
+<span class="s3">//    }</span>
+<span class="s3">//</span>
+<span class="s3">//}</span>
+</pre>
+</body>
+</html>
