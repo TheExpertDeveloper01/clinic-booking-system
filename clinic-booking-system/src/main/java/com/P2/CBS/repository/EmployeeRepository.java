@@ -2,7 +2,6 @@ package com.P2.CBS.repository;
 
 import com.P2.CBS.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
