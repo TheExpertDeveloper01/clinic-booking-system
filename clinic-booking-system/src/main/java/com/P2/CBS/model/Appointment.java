@@ -25,13 +25,13 @@ public class Appointment {
     @Column(nullable = false)
     private String status; // Example: "Scheduled", "Completed", "Cancelled"
 
-//    @NotNull
-//    @Column(name = "patient_name",nullable = false)
-//    private String patientName;
-//
-//    @NotNull
-//    @Column(name = "doctor_name",nullable = false)
-//    private String doctorName;
+    @NotNull
+    @Column(name = "patient_name")
+    private String patientName;
+
+    @NotNull
+    @Column(name = "doctor_name")
+    private String doctorName;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
@@ -48,8 +48,8 @@ public class Appointment {
         this.date = date;
         this.time = time;
         this.status = status;
-//        this.patientName = patientName;
-//        this.doctorName = doctorName;
+        this.patientName = patientName;
+        this.doctorName = doctorName;
         this.patient = patient;
         this.doctor = doctor;
     }
@@ -87,21 +87,21 @@ public class Appointment {
         this.status = status;
     }
 
-//    public String getPatientName() {
-//        return patientName;
-//    }
-//
-//    public void setPatientName(String patientName) {
-//        this.patientName = patientName;
-//    }
-//
-//    public String getDoctorName() {
-//        return doctorName;
-//    }
-//
-//    public void setDoctorName(String doctorName) {
-//        this.doctorName = doctorName;
-//    }
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
 
     public Patient getPatient() {
         return patient;
@@ -126,8 +126,8 @@ public class Appointment {
                 ", date=" + date +
                 ", time=" + time +
                 ", status='" + status + '\'' +
-//                ", patientName='" + patientName + '\'' +
-//                ", doctorName='" + doctorName + '\'' +
+                ", patientName='" + patientName + '\'' +
+                ", doctorName='" + doctorName + '\'' +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 '}';
