@@ -4,7 +4,6 @@ import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
