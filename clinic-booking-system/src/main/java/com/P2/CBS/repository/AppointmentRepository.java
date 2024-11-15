@@ -14,9 +14,11 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
 // Find appointments by doctor ID
+    @Query("SELECT * FROM appointments WHERE doctor_id = :doctorId;")
     List<Appointment> findByDoctorId(Long doctorId);
 
     // Find appointments for patient by patient Id
+    @Query("SELECT * FROM appointments WHERE patient_id = :patientId;")
     List<Appointment> findByPatientId(Long patientId);
 
     // Find appointments by doctor and date
