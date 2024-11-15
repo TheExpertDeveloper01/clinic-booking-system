@@ -109,20 +109,20 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.11.3</version>
+<!--			<version>5.10.2</version>-->
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.11.3</version>
+<!--			<version>5.10.2</version>-->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>5.11.0</version>
+<!--			<version>5.11.0</version>-->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -181,7 +181,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 				<configuration>
-					<!-- Necessary for some versions -->
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
