@@ -30,7 +30,7 @@ public class AppointmentService {
     public Appointment createAppointment(Appointment appointment){
         // Business logic to avoid overlapping appointments
         List<Appointment> existingAppointments = appointmentRepository.findAppointmentsByDoctorAndDate(appointment.getDoctor().getId(), appointment.getDate());
-        if (existingAppointments.stream().anyMatch(a.getTime().equals(appointment.getTime()))){
+        if (existingAppointments.stream().anyMatch(a ->a.getTime().equals(appointment.getTime()))){
             throw new IllegalArgumentException("The doctor is not available at this time");
 
         }
