@@ -4,9 +4,11 @@ import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("appointments")
@@ -54,6 +56,21 @@ public class AppointmentController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/doctor/{doctorId}")
+    public List<Appointment> getAppointmentsByDoctorId(@PathVariable Long doctorId){
+        return appointmentService.getAppointmentsByDoctorId(doctorId);
+    }
+
+    @GetMapping("patient/{patientId}")
+    public List<Appointment> getAppointmentsByPatientId(@PathVariable Long patientId){
+        return appointmentService.getAppointmentsByPatientId(patientId);
+    }
+
+    @GetMapping("/doctor/{doctorId}/date/{date}")
+    public List<Appointment> getAppointmentsByDoctorAndDate(@PathVariable Long doctorId, @PathVariable LocalDate date){
+        return appointmentService.getAppointmentsByDoctorId(doctorId);
     }
 
 }
