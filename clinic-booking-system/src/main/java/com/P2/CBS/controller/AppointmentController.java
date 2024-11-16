@@ -1,5 +1,6 @@
 package com.P2.CBS.controller;
 
+import com.P2.CBS.dto.AppointmentDTO;
 import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,17 @@ public class AppointmentController {
     }
 
     @PostMapping
-    public Appointment createAppointment(@RequestBody Appointment appointment){
-        return appointmentService.createAppointment(appointment);
+    public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+        Appointment createdAppointment = appointmentService.createAppointment(appointmentDTO);
+        return ResponseEntity.ok(createdAppointment);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment){
+    public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody AppointmentDTO appointmentDTO) {
         return appointmentService.getAppointmentById(id)
                 .map(existingAppointment -> {
-                    appointment.setId(id);
-                    return ResponseEntity.ok(appointmentService.updateAppointment(appointment));
+                    Appointment updatedAppointment = appointmentService.updateAppointment(id, appointmentDTO);
+                    return ResponseEntity.ok(updatedAppointment);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
