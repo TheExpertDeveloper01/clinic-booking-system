@@ -24,19 +24,32 @@ public class AppointmentServiceTest {
     @Mock
     private AppointmentRepository appointmentRepository;
 
+    @Mock
+    private PatientService patientService;
+
+    @Mock
+    private EmployeeService employeeService;
+
     @InjectMocks
     private AppointmentService appointmentService;
 
     @Test
-    void testGetAllAppointments(){
+    void testGetAllAppointments() {
         List<Appointment> mockAppointments = new ArrayList<>();
-        mockAppointments.add(new Appointment(LocalDate.now(), LocalTime.of(10, 0), "Scheduled", "John Doe", "Dr. Smith", new Patient(), new Employee()));
 
+        Patient patient = new Patient();
+        patient.setFirstName("John");
+        patient.setLastName("Doe");
+
+        Employee doctor = new Employee();
+        doctor.setFirstName("Dr.");
+        doctor.setLastName("Smith");
+
+        mockAppointments.add(new Appointment(LocalDate.now(), LocalTime.of(10, 0), "Scheduled", patient, doctor));
 
         when(appointmentRepository.findAll()).thenReturn(mockAppointments);
 
         List<Appointment> result = appointmentService.getAllAppointments();
         assertEquals(1, result.size());
     }
-
 }

@@ -1,6 +1,9 @@
 package com.P2.CBS.controller;
 
+import com.P2.CBS.dto.AppointmentDTO;
 import com.P2.CBS.model.Appointment;
+import com.P2.CBS.model.Employee;
+import com.P2.CBS.model.Patient;
 import com.P2.CBS.service.AppointmentService;
 import com.P2.CBS.util.JwtUtil;
 import org.junit.jupiter.api.Test;
@@ -24,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
-@AutoConfigureMockMvc(addFilters = false) // Disable security filters for testing
+@AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource(properties = {
         "jwt.secret=dGhpcy1pcy1hLXZlcnktc2VjdXJlLWFuZC1sb25nLXNlY3JldC1rZXktZm9yLWp3dA==",
         "jwt.expiration=36000000"
@@ -42,7 +45,16 @@ public class AppointmentControllerTest {
 
     @Test
     public void shouldReturnAllAppointments() throws Exception {
-        Appointment appointment = new Appointment(LocalDate.of(2024, 11, 20), LocalTime.of(10, 0), "Scheduled", "John Doe", "Dr. Smith", null, null);
+        Patient patient = new Patient();
+        patient.setFirstName("John");
+        patient.setLastName("Doe");
+
+        Employee doctor = new Employee();
+        doctor.setFirstName("Dr.");
+        doctor.setLastName("Smith");
+
+        Appointment appointment = new Appointment(LocalDate.of(2024, 11, 20), LocalTime.of(10, 0), "Scheduled", patient, doctor);
+
         given(appointmentService.getAllAppointments()).willReturn(Collections.singletonList(appointment));
 
         mockMvc.perform(get("/appointments"))
@@ -53,11 +65,16 @@ public class AppointmentControllerTest {
 
     @Test
     public void shouldCreateNewAppointment() throws Exception {
-        String appointmentJson = "{\"date\": \"2024-11-20\", \"time\": \"10:00\", \"status\": \"Scheduled\"}";
+        String appointmentJson = "{\"date\": \"2024-11-20\", \"time\": \"10:00\", \"status\": \"Scheduled\", \"patientId\": 1, \"doctorId\": 2}";
 
-        // Mock the service call for appointment creation
-        given(appointmentService.createAppointment(any(Appointment.class)))
-                .willReturn(new Appointment(LocalDate.of(2024, 11, 20), LocalTime.of(10, 0), "Scheduled", "John Doe", "Dr. Smith", null, null));
+        Patient patient = new Patient();
+        patient.setId(1L);
+        Employee doctor = new Employee();
+        doctor.setId(2L);
+
+        Appointment appointment = new Appointment(LocalDate.of(2024, 11, 20), LocalTime.of(10, 0), "Scheduled", patient, doctor);
+
+        given(appointmentService.createAppointment(any(AppointmentDTO.class))).willReturn(appointment);
 
         mockMvc.perform(post("/appointments")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -65,4 +82,5 @@ public class AppointmentControllerTest {
                 .andExpect(status().isOk());
     }
 }
+
 

@@ -11,18 +11,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-// Find appointments by doctor ID
-    @Query("SELECT * FROM appointments WHERE doctor_id = :doctorId;")
-    List<Appointment> findByDoctorId(@Param("doctorId")Long doctorId);
+    // Find appointments by doctor ID
+    @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorId")
+    List<Appointment> findByDoctorId(@Param("doctorId") Long doctorId);
 
-    // Find appointments for patient by patient Id
-    @Query("SELECT * FROM appointments WHERE patient_id = :patientId;")
+    // Find appointments by patient ID
+    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientId")
     List<Appointment> findByPatientId(@Param("patientId") Long patientId);
 
     // Find appointments by doctor and date
     @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorId AND a.date = :date")
     List<Appointment> findAppointmentsByDoctorAndDate(@Param("doctorId") Long doctorId, @Param("date") LocalDate date);
-
 }

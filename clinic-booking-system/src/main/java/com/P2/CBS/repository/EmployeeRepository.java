@@ -16,7 +16,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByLastName(String lastName);
 
     // Find all doctors available on a given date
-    @Query("SELECT e FROM e WHERE e.id NOT IN (SELECT a.doctor.id FROM appointment a WHERE a.date = :date)")
-    List<Employee> findAvailableDoctorsByDate(@Param("date")LocalDate date);
+    @Query("SELECT e FROM Employee e WHERE e.id NOT IN (SELECT a.doctor.id FROM Appointment a WHERE a.date = :date)")
+    List<Employee> findAvailableDoctorsByDate(@Param("date") LocalDate date);
+
 
 }
