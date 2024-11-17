@@ -21,6 +21,7 @@
 
 
 <!--Main content-->
+<!--Testing the git-->
 <main>
     <div th:if="${httpServletRequest.remoteUser != null}">
         <h2>Hello, <span th:text="${#httpServletRequest.remoteUser}"> [User]</span>!</h2>
@@ -32,7 +33,7 @@
         <p>Please <a th:href="@{/login}">login</a> or <a th:href="@{/register}">Register</a> to get started.</p>
 
     </div>
-
+<div></div>
 </main>
 
 <footer>
