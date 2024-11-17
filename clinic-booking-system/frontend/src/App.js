@@ -11,6 +11,7 @@ function App() {
 <Router>
 <div className="App">
   <Routes>
+  <Route path="/" element={<h2>Welcome to the Clinic Booking System!</h2>}/>  
   <Route path="/login" element={<LoginForm />}/>
   <Route path="/register" element={<RegisterForm />}/>
   </Routes>
