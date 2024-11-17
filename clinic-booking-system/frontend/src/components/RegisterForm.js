@@ -21,7 +21,7 @@ function RegisterForm(){
             console.log(response.data);
         } catch (error) {
             // Error handling
-            console.error('Error registering!, error');
+            console.error('Error registering!', error);
         }
     };
 
