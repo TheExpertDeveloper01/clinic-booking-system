@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <title>Clinic Booking System</title>
+    <link rel = "stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
-<h1>Welcome to the Clinic Booking System</h1>
-<a href="/login">Login</a>
-<a href="/register">Register</a>
+<header>
+    <h1>Welcome to the Clinic Booking System</h1>
+    <nav>
+        <ul>
+            <li> <a th:href= "@{/}">Home </a></li>
+            <li> <a th:href= "@{/login}">Login </a></li>
+            <li> <a th:href= "@{/register}">Register </a></li>
+            <li> <a th:href= "@{/appointments}">Appointments </a></li>
+            <li> <a th:href= "@{/profile}">Profile </a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<!--Main content-->
+<main>
+    <div th:if="${httpServletRequest.remoteUser != null}}">
+        <h2>Hello, <span th:text="${#httpServletRequest.remoteUser}"> [User]</span>!</h2>
+        <p>Welcome back! Ready to book your next appointment?</p>
+        <a th:href="@{/appointments}">Book an Appointment</a>
+
+    </div>
+    <div th:if="${#httpServletRequest.remoteUser == null}">
+        <p>Please <a th:href="@{/login}">login</a> or <a th:href="@{/register}">Register</a> to get started.</p>
+
+    </div>
+
+</main>
+
+<footer>
+
+    <p>&copy; 2024 Clinic Booking System. All rights reserved.</p>
+</footer>
+
+<div id="react-root"></div>
+<script th:src="@{/js/main.js}"></script>
+
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Clinic Booking System</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Welcome to the Clinic Booking System</h1>-->
+<!--<a href="/login">Login</a>-->
+<!--<a href="/register">Register</a>-->
+<!--</body>-->
+<!--</html>-->
