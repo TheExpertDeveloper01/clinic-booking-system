@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import CoolNavbar from './components/CoolNavbar';
+import NifftyCarousel from './components/NifftyCarousel';
 
 
 import './App.css';
@@ -23,8 +24,12 @@ function App() {
 
 
 </div>
+<div>
 
+  <NifftyCarousel/>
+</div>
 </Router>
+
 
   );
 }
