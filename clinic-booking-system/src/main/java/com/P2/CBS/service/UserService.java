@@ -18,24 +18,38 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     // Fetch user details by username
-    public Optional<User> getUserByUsername(String username){
-        return userRepository.findByUsername(username);
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     // Update user information
-    public User updateUser(String username, User updatedUser) {
-        Optional<User> existingUserOptional = userRepository.findByUsername(username);
-        if (existingUserOptional.isPresent()){
-            existingUser.setFirstName(updatedUser.getFirstName());
-            existingUser.setLastName(updatedUser.getLastName());
-            existingUser.setEmail(updatedUser.getEmail());
-            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
-                existingUser.setPassword()(passwordEncoder.encode(updatedUser.getPassword()));
-            }
-            return userRepository.save(existingUser);
-
-        } else{
-            throw new RuntimeException("User not found");
+    public User updateUser(String username, User updatedUser){
+        User existingUser = findByUsername(username);
+        existingUser.setFirstName(updatedUser.getFirstName());
+        existingUser.setLastName(updatedUser.getLastName());
+        existingUser.setEmail(updatedUser.getEmail());
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
+            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
+
+        return userRepository.save(existingUser);
     }
+
+
+//    public User updateUser(String username, User updatedUser) {
+//        Optional<User> existingUserOptional = userRepository.findByUsername(username);
+//        if (existingUserOptional.isPresent()){
+//            existingUser.setFirstName(updatedUser.getFirstName());
+//            existingUser.setLastName(updatedUser.getLastName());
+//            existingUser.setEmail(updatedUser.getEmail());
+//            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+//                existingUser.setPassword()(passwordEncoder.encode(updatedUser.getPassword()));
+//            }
+//            return userRepository.save(existingUser);
+//
+//        } else{
+//            throw new RuntimeException("User not found");
+//        }
+//    }
 }

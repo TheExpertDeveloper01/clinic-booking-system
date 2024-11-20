@@ -35,6 +35,10 @@ public class User implements UserDetails {
         this.firstName = firstName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
