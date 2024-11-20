@@ -31,7 +31,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll() // Allow all requests for testing
+                        .requestMatchers("/api/auth/**").permitAll() // Allow unauthenticated access to authentication endpoints (e.g., login, register)
+                        .anyRequest().authenticated() // Allow all requests for testing
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
