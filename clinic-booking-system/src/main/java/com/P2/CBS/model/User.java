@@ -31,6 +31,18 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "patient_id, unique = true")
+    private Long patientId;
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+
     public String getFirstName() {
         return firstName;
     }
