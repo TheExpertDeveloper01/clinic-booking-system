@@ -18,24 +18,27 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     // Fetch user details by username
-    public User findByUsername(String username){
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public User findByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null){
+            throw new RuntimeException("User not found");
+        }
+        return user;
     }
 
     // Update user information
-    public User updateUser(String username, User updatedUser){
+    public User updateUser(String username, User updatedUser) {
         User existingUser = findByUsername(username);
         existingUser.setFirstName(updatedUser.getFirstName());
         existingUser.setLastName(updatedUser.getLastName());
         existingUser.setEmail(updatedUser.getEmail());
-        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
             existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
 
         return userRepository.save(existingUser);
     }
-
+}
 
 //    public User updateUser(String username, User updatedUser) {
 //        Optional<User> existingUserOptional = userRepository.findByUsername(username);
@@ -52,4 +55,4 @@ public class UserService {
 //            throw new RuntimeException("User not found");
 //        }
 //    }
-}
+//}

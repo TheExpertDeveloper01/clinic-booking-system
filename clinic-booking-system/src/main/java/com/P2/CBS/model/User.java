@@ -31,12 +31,12 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -53,6 +53,11 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    // Setter for password
+    public void setPassword(String password) {
+        this.password = password;
     }
     // Other fields...
 
