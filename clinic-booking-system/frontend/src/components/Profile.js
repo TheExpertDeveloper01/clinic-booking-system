@@ -6,6 +6,7 @@ function Profile() {
         firstName: '',
         lastName: '',
         email: '',
+        patientId: ''
     });
 
     const [editMode, setEditMode] = useState(false);
@@ -56,6 +57,7 @@ function Profile() {
             {!editMode ? (
 
                 <div>
+                    <p><strong>Patient Id:</strong> {user.patientId}</p>
                     <p><strong>First Name:</strong> {user.firstName}</p>
                     <p><strong>lastName:</strong> {user.lastName}</p>
                     <p><strong>email:</strong> {user.email}</p>
