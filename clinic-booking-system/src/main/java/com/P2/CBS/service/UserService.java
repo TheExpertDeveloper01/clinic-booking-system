@@ -17,6 +17,21 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public User registerNewUser(User newUser){
+        // Encode password and set user details
+        newUser.setPassword((passwordEncoder.encode(newUser.getPassword())));
+
+        // Assign an auto-generated patientId
+        newUser.setPatientId(getNextPatientId());
+
+        return userRepository.save(newUser);
+    }
+
+    // Generate patientId incrementally
+    private Long getNextPatientId(){
+        return (long) (userRepository.count() + 1);
+    }
+
     // Fetch user details by username
     public User findByUsername(String username) {
         User user = userRepository.findByUsername(username);
