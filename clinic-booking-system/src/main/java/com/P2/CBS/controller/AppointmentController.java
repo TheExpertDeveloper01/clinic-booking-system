@@ -5,6 +5,7 @@ import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,29 @@ import java.time.LocalDate;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+
+    // GET method to retrieve available appointments
+    @GetMapping("/available")
+    public ResponseEntity<List<Appointment>> getAvailableAppointments(){
+        List<Appointment> appointments = appointmentService.getAvailableAppointments();
+        return ResponseEntity.ok(appointments);
+    }
+
+    // Post method to book an appointment
+    @PostMapping("/book")
+    public ResponseEntity<Appointment> bookAppointment(@RequestBody AppointmentRequest appointmentRequest){
+        Appointment appointment = appointmentService.bookAppointment(appointmentRequest);
+        return ResponseEntity.ok(appointment);
+
+    }
+
+    // Get method to retrieve user specific appointments
+    @GetMapping ResponseEntity<List<Appointment>> getUserAppointments(Authentication authentication){
+        String username = authentication.getName();
+        List<Appointment> userAppointments = appointmentService.getAppointmentsByUsername(username);
+        return ResponseEntity.ok(userAppointments);
+    }
+
 
     @Autowired
     public AppointmentController(AppointmentService appointmentService){
