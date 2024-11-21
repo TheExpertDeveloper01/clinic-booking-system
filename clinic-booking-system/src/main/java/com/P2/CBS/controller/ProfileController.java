@@ -26,14 +26,15 @@ public class ProfileController {
     @PutMapping("/profile")
     public ResponseEntity<User> updateUserProfile(@RequestBody User updatedUser, Authentication authentication){
         String username = authentication.getName();
-        User user = userService.findByUsername(username);
+        User savedUser = userService.updateUser(username, updatedUser);
+        return ResponseEntity.ok(savedUser);
 
         // Update user fields
-        user.setFirstName(updatedUser.getFirstName());
-        user.setLastName(updatedUser.getLastName());
-        user.setEmail(updatedUser.getEmail());
-
-        User savedUser = userService.saveUser(user);
-        return ResponseEntity.ok(savedUser);
+//        user.setFirstName(updatedUser.getFirstName());
+//        user.setLastName(updatedUser.getLastName());
+//        user.setEmail(updatedUser.getEmail());
+//
+//        User savedUser = userService.saveUser(user);
+//        return ResponseEntity.ok(savedUser);
     }
 }
