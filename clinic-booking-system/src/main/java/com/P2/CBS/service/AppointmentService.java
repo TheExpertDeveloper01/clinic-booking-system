@@ -36,6 +36,22 @@ public class AppointmentService {
                 .toList();
     }
 
+    public Appointment bookAppointment(Long appointmentId, Long patientId){
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Appointment not found >:p"));
+        Patient patient = patientService.getPatientById(patientId)
+                .orElseThrow(() -> new IllegalArgumentException("Patient not found :o"));
+        
+        if (!"AVAILABLE".equalsIgnoreCase(appointment.getStatus())){
+            throw new IllegalArgumentException("Appointment is not available. Aw shucks");
+        }
+
+        appointment.setStatus("BOOKED");
+        appointment.setPatient(patient);
+        return appointmentRepository.save(appointment);
+    }
+
+
     public List<Appointment> getAllAppointments(){
         return appointmentRepository.findAll();
     }
