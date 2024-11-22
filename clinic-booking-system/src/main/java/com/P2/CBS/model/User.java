@@ -31,7 +31,7 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patient_id, unique = true, nullable = false")
     private Long patientId;
 

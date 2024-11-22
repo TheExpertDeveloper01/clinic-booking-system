@@ -1,5 +1,7 @@
 package com.P2.CBS.controller;
 
+
+import com.P2.CBS.model.User;
 import com.P2.CBS.dto.AppointmentDTO;
 import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
@@ -24,18 +26,21 @@ public class AppointmentController {
         return ResponseEntity.ok(appointments);
     }
 
-    // Post method to book an appointment
     @PostMapping("/book")
-    public ResponseEntity<Appointment> bookAppointment(@RequestBody AppointmentRequest appointmentRequest){
-        Appointment appointment = appointmentService.bookAppointment(appointmentRequest);
+    public ResponseEntity<Appointment> bookAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+        Long appointmentId = appointmentDTO.getAppointmentId();
+        Long patientId = appointmentDTO.getPatientId();
+        Appointment appointment = appointmentService.bookAppointment(appointmentId, patientId);
         return ResponseEntity.ok(appointment);
-
     }
 
-    // Get method to retrieve user specific appointments
-    @GetMapping ResponseEntity<List<Appointment>> getUserAppointments(Authentication authentication){
+    // Get method to retrieve user specific appointments using patientId
+    @GetMapping("/myappointments")
+    public ResponseEntity<List<Appointment>> getUserAppointments(Authentication authentication) {
         String username = authentication.getName();
-        List<Appointment> userAppointments = appointmentService.getAppointmentsByUsername(username);
+        User user = userService.findByUsername(username); // Fetch the user object to get the patientId
+        Long patientId = user.getPatientId();
+        List<Appointment> userAppointments = appointmentService.getAppointmentsByPatientId(patientId);
         return ResponseEntity.ok(userAppointments);
     }
 

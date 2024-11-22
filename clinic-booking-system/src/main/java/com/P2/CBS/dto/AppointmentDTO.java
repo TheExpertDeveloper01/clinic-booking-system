@@ -13,7 +13,25 @@ public class AppointmentDTO {
 
 
     // Getters and Setters
+    private Long appointmentId;
+    
 
+    // Getters and setters
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -39,13 +57,7 @@ public class AppointmentDTO {
         this.status = status;
     }
 
-    public Long getPatientId() {
-        return patientId;
-    }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
 
     public Long getDoctorId() {
         return doctorId;
