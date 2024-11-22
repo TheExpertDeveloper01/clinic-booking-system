@@ -5,6 +5,7 @@ import com.P2.CBS.model.User;
 import com.P2.CBS.dto.AppointmentDTO;
 import com.P2.CBS.model.Appointment;
 import com.P2.CBS.service.AppointmentService;
+import com.P2.CBS.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,9 @@ import java.time.LocalDate;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+
+    @Autowired
+    private UserService userService;
 
     // GET method to retrieve available appointments
     @GetMapping("/available")
