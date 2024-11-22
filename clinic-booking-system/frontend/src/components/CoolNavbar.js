@@ -12,8 +12,9 @@ function CoolNavbar(){
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                <Nav.Link as={Link} to="/login">Patient Login</Nav.Link>
+                <Nav.Link as={Link} to="/register">Patient Register</Nav.Link>
+                <Nav.Link as={Link} to="/staff/login">Staff Login</Nav.Link>
 
 
 
