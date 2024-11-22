@@ -14,11 +14,15 @@ function RegisterForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:8080/api/auth/register', {
+            const response = await axios.post('http://localhost:8080/auth/register', {
                 firstName,
                 lastName,
                 email,
                 password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             });
 
             // Handle successful regsitration

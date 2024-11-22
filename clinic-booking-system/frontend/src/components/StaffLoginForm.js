@@ -17,7 +17,7 @@ function StaffLoginForm(){
 
             // Handle successful login
             console.log(response.data);
-            localStorage('token', response.data.token); // Storing JWT token
+            localStorage.setItem('token', response.data.token); // Storing JWT token
             navigate('/staff/dashboard'); // Redirect to staff specific dashboard or Profile page
 
 

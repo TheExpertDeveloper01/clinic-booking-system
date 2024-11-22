@@ -14,9 +14,13 @@ function LoginForm(){
 
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:8080/api/auth/login', {
+            const response = await axios.post('http://localhost:8080/auth/login', {
                 email,
                 password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             });
 
             // Handle successful login
