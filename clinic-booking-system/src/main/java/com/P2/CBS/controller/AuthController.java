@@ -5,7 +5,7 @@ import com.P2.CBS.repository.RoleRepository;
 import com.P2.CBS.service.UserService;
 import com.P2.CBS.util.JwtUtil;
 import com.P2.CBS.service.CustomUserDetailsService;
-import com.P2.CBS.service.PatientService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,9 +24,6 @@ public class AuthController {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
-    @Autowired
-    private PatientService patientService;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -49,11 +46,31 @@ public class AuthController {
     @PostMapping("/register")
     public String register(@RequestBody User user){
 
-        // Assign ROLE_PATIENT
+        // Assign ROLE_PATIENT by default
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
+        if (patientRole == null){
+            throw new RuntimeException("Patient role not found. Please create it in the database.");
+        }
+
         user.addRole(patientRole);
 
         userService.registerUser(user);
         return "Registration successful!";
     }
+
+    // Create a separate endpoint for staff registration, or create staff users manually
+    @PostMapping("/register-staff")
+    public String registerStaff(@RequestBody User user){
+        // This endpoint can be secured so that only admins can register staff
+
+        Role staffRole = roleRepository.findByName("ROLE_STAFF");
+        if (staffRole == null){
+            throw new RuntimeException("Staff role not found. Please create it in the database.");
+        }
+        user.addRole(staffRole);
+
+        userService.registerUser(user);
+        return "Staff registration successful!";
+    }
+
 }
