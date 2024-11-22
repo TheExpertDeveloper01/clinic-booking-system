@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private String email;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "patient_id, unique = true")
+    @Column(name = "patient_id, unique = true, nullable = false")
     private Long patientId;
 
     public Long getPatientId() {

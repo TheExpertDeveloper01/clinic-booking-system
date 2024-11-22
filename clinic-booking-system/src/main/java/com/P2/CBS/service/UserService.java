@@ -17,15 +17,26 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerNewUser(User newUser){
-        // Encode password and set user details
-        newUser.setPassword((passwordEncoder.encode(newUser.getPassword())));
+    public User registerUser(User user) {
+        // Encrypt the password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Assign an auto-generated patientId
-        newUser.setPatientId(getNextPatientId());
+        // Assign a unique patientId incrementally
+        Long patientId = userRepository.count() + 1;
+        user.setPatientId(patientId);
 
-        return userRepository.save(newUser);
+        return userRepository.save(user);
     }
+
+//    public User registerNewUser(User newUser){
+//        // Encode password and set user details
+//        newUser.setPassword((passwordEncoder.encode(newUser.getPassword())));
+//
+//        // Assign an auto-generated patientId
+//        newUser.setPatientId(getNextPatientId());
+//
+//        return userRepository.save(newUser);
+//    }
 
     // Generate patientId incrementally
     private Long getNextPatientId(){
