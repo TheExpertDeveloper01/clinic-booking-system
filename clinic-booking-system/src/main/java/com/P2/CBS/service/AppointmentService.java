@@ -8,6 +8,7 @@ import com.P2.CBS.repository.AppointmentRepository;
 import com.P2.CBS.service.PatientService;
 import com.P2.CBS.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,6 +27,13 @@ public class AppointmentService {
         this.appointmentRepository = appointmentRepository;
         this.patientService = patientService;
         this.employeeService = employeeService;
+    }
+
+    public List<Appointment> getAvailableAppointments(){
+        return appointmentRepository.findAll()
+                .stream()
+                .filter(appointment -> "AVAILABLE".equalsIgnoreCase(appointment.getStatus()))
+                .toList();
     }
 
     public List<Appointment> getAllAppointments(){
