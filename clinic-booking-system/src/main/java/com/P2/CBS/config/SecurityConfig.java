@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll() // Allow unauthenticated access to authentication endpoints (e.g., login, register)
                         .requestMatchers("/staff/**").hasRole("STAFF") // Only staff can access endpoints under /staff/
+                        .requestMatchers("/patients/**").hasRole("PATIENT") // Only users with ROLE_PATIENT can access patient endpoints
                         .anyRequest().authenticated() // Allow all requests for testing
                 )
                 .sessionManagement(session -> session
