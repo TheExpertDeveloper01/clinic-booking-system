@@ -1,5 +1,6 @@
 package com.P2.CBS.controller;
 
+import com.P2.CBS.model.User;
 import com.P2.CBS.model.AuthenticationRequest;
 import com.P2.CBS.model.AuthenticationResponse;
 import com.P2.CBS.model.Patient;
@@ -28,13 +29,14 @@ public class AuthController {
     @Autowired
     private PatientService patientService;
 
+
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody AuthenticationRequest request){
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
 
         );
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         String token = jwtUtil.generateToken(userDetails);
         return new AuthenticationResponse(token);
     }
