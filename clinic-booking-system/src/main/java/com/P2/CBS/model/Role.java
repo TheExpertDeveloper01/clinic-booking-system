@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -13,6 +15,9 @@ public class Role {
     private Long id;
     @NotNull
     private String name;
+
+    // Constructor
+    public Role(){}
 
     // Getters and Setters
     public Long getId() {

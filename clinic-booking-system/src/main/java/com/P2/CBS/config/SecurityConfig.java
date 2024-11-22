@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll() // Allow unauthenticated access to authentication endpoints (e.g., login, register)
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS requests for all endpoints
+                        .requestMatchers("/staff/**").hasRole("STAFF") // Only staff can access endpoints under /staff/
                         .anyRequest().authenticated() // Allow all requests for testing
                 )
                 .sessionManagement(session -> session

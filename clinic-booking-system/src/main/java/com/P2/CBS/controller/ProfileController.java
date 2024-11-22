@@ -17,8 +17,8 @@ public class ProfileController {
     // GET method to retrieve user profile
     @GetMapping("/profile")
     public ResponseEntity<User> getUserProfile(Authentication authentication){
-        String username = authentication.getName();
-        User user = userService.findByUsername(username);
+        String email = authentication.getName();
+        User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
 

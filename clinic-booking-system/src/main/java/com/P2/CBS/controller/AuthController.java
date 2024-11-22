@@ -1,9 +1,8 @@
 package com.P2.CBS.controller;
 
-import com.P2.CBS.model.User;
-import com.P2.CBS.model.AuthenticationRequest;
-import com.P2.CBS.model.AuthenticationResponse;
-import com.P2.CBS.model.Patient;
+import com.P2.CBS.model.*;
+import com.P2.CBS.repository.RoleRepository;
+import com.P2.CBS.service.UserService;
 import com.P2.CBS.util.JwtUtil;
 import com.P2.CBS.service.CustomUserDetailsService;
 import com.P2.CBS.service.PatientService;
@@ -29,6 +28,12 @@ public class AuthController {
     @Autowired
     private PatientService patientService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private UserService userService;
+
 
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody AuthenticationRequest request){
@@ -42,8 +47,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody Patient patient){
-        patientService.createPatient(patient);
+    public String register(@RequestBody User user){
+
+        // Assign ROLE_PATIENT
+        Role patientRole = roleRepository.findByName("ROLE_PATIENT");
+        user.addRole(patientRole);
+
+        userService.registerUser(user);
         return "Registration successful!";
     }
 }
