@@ -5,16 +5,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.P2.CBS.util.JwtUtil;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 // Custom UserDetails implementation
 public class CustomUserDetails implements UserDetails {
-    private String username;
+    private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
     // Constructor
-    public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.username = username;
+    public CustomUserDetails(String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
@@ -32,7 +33,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
