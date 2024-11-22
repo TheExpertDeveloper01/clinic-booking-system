@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import { useNavigate } from 'react-router-dom';
+
 function RegisterForm(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +23,8 @@ function RegisterForm(){
 
             // Handle successful regsitration
             console.log(response.data);
+            localStorage.setItem('token', response.data.token); // storing the jwt token
+            navigate('/login')
         } catch (error) {
             // Error handling
             console.error('Error registering!', error);
