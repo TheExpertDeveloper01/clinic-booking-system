@@ -45,6 +45,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@RequestBody User user){
+        System.out.println("Register endpoint hit."); // Add this for debugging
+
 
         // Assign ROLE_PATIENT by default
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
@@ -55,6 +57,7 @@ public class AuthController {
         user.addRole(patientRole);
 
         userService.registerUser(user);
+        System.out.println("User registered successfully."); // Add this for debugging
         return "Registration successful!";
     }
 
