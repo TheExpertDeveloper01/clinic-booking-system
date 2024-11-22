@@ -45,9 +45,9 @@ public class UserService {
         return (long) (userRepository.count() + 1);
     }
 
-    // Fetch user details by username
-    public User findByUsername(String username) {
-        User user = userRepository.findByUsername(username);
+    // Fetch user details by email
+    public User findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
         if (user == null){
             throw new RuntimeException("User not found");
         }
@@ -55,8 +55,8 @@ public class UserService {
     }
 
     // Update user information
-    public User updateUser(String username, User updatedUser) {
-        User existingUser = findByUsername(username);
+    public User updateUser(String email, User updatedUser) {
+        User existingUser = findByEmail(email);
         existingUser.setFirstName(updatedUser.getFirstName());
         existingUser.setLastName(updatedUser.getLastName());
         existingUser.setEmail(updatedUser.getEmail());

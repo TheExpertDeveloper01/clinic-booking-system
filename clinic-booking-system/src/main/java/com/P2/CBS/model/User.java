@@ -14,9 +14,9 @@ public class User implements UserDetails {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
 
-    @NotNull
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+//    @NotNull
+//    @Column(name = "username", nullable = false, unique = true)
+//    private String username;
 
     @NotNull
     @Column(name = "password", nullable = false)
@@ -28,7 +28,8 @@ public class User implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @NotNull
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     //
@@ -88,7 +89,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
