@@ -41,8 +41,8 @@ public class AppointmentController {
     // Get method to retrieve user specific appointments using patientId
     @GetMapping("/myappointments")
     public ResponseEntity<List<Appointment>> getUserAppointments(Authentication authentication) {
-        String username = authentication.getName();
-        User user = userService.findByUsername(username); // Fetch the user object to get the patientId
+        String email = authentication.getName();
+        User user = userService.findByEmail(email); // Fetch the user object to get the patientId
         Long patientId = user.getPatientId();
         List<Appointment> userAppointments = appointmentService.getAppointmentsByPatientId(patientId);
         return ResponseEntity.ok(userAppointments);
