@@ -17,9 +17,12 @@ function Profile() {
         // Fetch user data on component mount
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/users/profile', {
+                const token = localStorage.getItem('token');
+                console.log('Using token:', token); // Add log to verify token
+                const response = await axios.get('http://localhost:8080/users/profile', {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json',
+                        'Authorization':`Bearer ${token}`,
 
                     },
                 });
@@ -40,7 +43,7 @@ function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put('http://localhost:8080/api/users/profile', user, {
+            await axios.put('http://localhost:8080/users/profile', user, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
