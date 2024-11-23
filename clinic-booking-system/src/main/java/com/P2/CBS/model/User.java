@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "app_users")
 public class User implements UserDetails {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 //    @NotNull
-//    @Column(name = "username", nullable = false, unique = true)
-//    private String username;
+    @Column(nullable = false, unique = true)
+    private String username;
 
     @NotNull
     @Column(name = "password", nullable = false)
@@ -36,9 +36,10 @@ public class User implements UserDetails {
     private String email;
 
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "patient_id", unique = true, nullable = false)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "patient_id", unique = true, nullable = false)
+    @Column(nullable = true)
     private Long patientId;
 
     public Long getPatientId() {
@@ -93,7 +94,10 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

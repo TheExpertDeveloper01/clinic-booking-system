@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -52,6 +53,11 @@ public class AuthController {
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
         if (patientRole == null){
             throw new RuntimeException("Patient role not found. Please create it in the database.");
+        }
+
+        // Set the username to the email, or another appropriate value if needed
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            user.setUsername(user.getEmail());
         }
 
         user.addRole(patientRole);
