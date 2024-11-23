@@ -22,10 +22,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Assign a unique patientId incrementally
-//
-//        // Not needed anymore
-//        Long patientId = userRepository.count() + 1; // Ensure the patientId is unique
-//        user.setPatientId(patientId);
+        Long patientId = userRepository.count() + 1; // Ensure the patientId is unique
+        user.setPatientId(patientId);
 
         return userRepository.save(user);
     }

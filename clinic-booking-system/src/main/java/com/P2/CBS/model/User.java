@@ -39,7 +39,7 @@ public class User implements UserDetails {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "patient_id", unique = true, nullable = false)
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Long patientId;
 
     public Long getPatientId() {

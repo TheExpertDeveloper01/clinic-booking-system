@@ -49,6 +49,7 @@ public class AuthController {
         System.out.println("Register endpoint hit."); // Add this for debugging
 
 
+
         // Assign ROLE_PATIENT by default
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
         if (patientRole == null){
