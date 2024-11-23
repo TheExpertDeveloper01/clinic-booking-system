@@ -43,12 +43,18 @@ function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put('http://localhost:8080/users/profile', user, {
+            const token = localStorage.getItem('token');
+            console.log('Using token:', token); // Add log to verify token
+
+            const response = await axios.put('http://localhost:8080/users/profile', user, {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json',
+                    'Authorization':`Bearer ${token}`,
                 },
             });
+            console.log("User data updated successfully: ", response.data);
             setEditMode(false);
+
         } catch (error) {
             console.error('Error updating user data:', error);
         }
