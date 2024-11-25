@@ -12,6 +12,9 @@ function LoginForm(){
     
     const handleSubmit = async (e) =>{
 
+
+        
+
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:8080/auth/login', {
@@ -20,13 +23,24 @@ function LoginForm(){
             }, {
                 headers: {
                     'Content-Type': 'application/json',
+                    
                 }
             });
-
+            // START OF WORKING CODE
             // Handle successful login
             console.log(response.data);
             localStorage.setItem('token', response.data.token); // Store JWT token
-            navigate('/profile'); // Redirect to profile page
+            // navigate('/profile'); // Redirect to profile page
+
+            // Adding a slight delay to ensure token is stored before redirecting
+            setTimeout(() => {
+                navigate('/profile'); 
+            }, 200);
+            // END OF WORKING CODE
+            
+            
+
+
         } catch(error){
             // Error handling
             console.error('Error loggin in!', error);

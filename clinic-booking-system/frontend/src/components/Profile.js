@@ -26,11 +26,17 @@ function Profile() {
                 return;
             }
 
+            // Token validation check
+            if (!token.includes('.') || token.split('.').length !== 3){
+                console.error('Invalid token format:', token);
+                return;
+            }
+
             console.log('Using token:', token); // Add log to verify token
 
             try {
-                const token = localStorage.getItem('token');
-                console.log('Using token:', token); // Add log to verify token
+                // const token = localStorage.getItem('token');
+                // console.log('Using token:', token); // Add log to verify token
                 const response = await axios.get('http://localhost:8080/users/profile', {
                     headers: {
                         'Content-Type': 'application/json',
