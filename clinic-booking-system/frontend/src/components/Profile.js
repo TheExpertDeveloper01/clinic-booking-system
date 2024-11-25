@@ -16,6 +16,18 @@ function Profile() {
 
         // Fetch user data on component mount
         const fetchUserData = async () => {
+
+            let token = localStorage.getItem('token');
+
+            // Retry mechanism if token is not immediately available
+            if (!token){
+                console.error('Token not available. Retying in 100ms...');
+                setTimeout(fetchUserData, 100);
+                return;
+            }
+
+            console.log('Using token:', token); // Add log to verify token
+
             try {
                 const token = localStorage.getItem('token');
                 console.log('Using token:', token); // Add log to verify token
