@@ -29,7 +29,11 @@ function LoginForm(){
             // START OF WORKING CODE
             // Handle successful login
             console.log(response.data);
+
+            
             localStorage.setItem('token', response.data.token); // Store JWT token
+
+
             // navigate('/profile'); // Redirect to profile page
 
             // Adding a slight delay to ensure token is stored before redirecting
@@ -37,6 +41,8 @@ function LoginForm(){
                 navigate('/profile'); 
             }, 200);
             // END OF WORKING CODE
+
+            
             
             
 
