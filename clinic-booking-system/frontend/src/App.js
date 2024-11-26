@@ -13,20 +13,20 @@ import './App.css';
 
 function App() {
   return (
-   
+    <AuthProvider>
 <Router>
 <div className="App">
   <CoolNavbar />
 
 
-<AuthProvider>
+
   <Routes>
   <Route path="/" element={<h2>Welcome to the Clinic Booking System!</h2>}/>  
   <Route path="/login" element={<LoginForm />}/>
   <Route path="/register" element={<RegisterForm />}/>
   <Route path="/profile" element={<Profile />} />
   </Routes>
-</AuthProvider>
+
 
 </div>
 <div>
@@ -35,7 +35,7 @@ function App() {
 </div>
 {/* <NifftyCarousel/> */}
 </Router>
-
+</AuthProvider>
 
   );
 }
