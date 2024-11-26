@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginForm(){
 
-    const [email, setEmail] = useState('');
+    // const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate(); // Hook to handle navigation
@@ -18,7 +20,7 @@ function LoginForm(){
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:8080/auth/login', {
-                email,
+                username,
                 password,
             }, {
                 headers: {
@@ -31,7 +33,11 @@ function LoginForm(){
             console.log(response.data);
 
             
-            localStorage.setItem('token', response.data.token); // Store JWT token
+            // localStorage.setItem('token', response.data.token); // Store JWT token
+
+            const { jwt } = response.data; // Extract JWT token
+            localStorage.setItem('token', jwt); // Store JWT token
+
 
 
             // navigate('/profile'); // Redirect to profile page
@@ -58,7 +64,7 @@ function LoginForm(){
         <form onSubmit={handleSubmit}>
             <h2>Login</h2>
             <label>
-                Email: <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                Email: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
 
             </label>
             <label>
