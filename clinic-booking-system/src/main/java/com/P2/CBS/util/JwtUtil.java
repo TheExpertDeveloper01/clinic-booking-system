@@ -55,6 +55,8 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (JwtException e) {
+            // Debug
+            System.out.println("Error parsing JWT token: " + e.getMessage());
             throw new RuntimeException("Invalid JWT token", e);
         }
     }
