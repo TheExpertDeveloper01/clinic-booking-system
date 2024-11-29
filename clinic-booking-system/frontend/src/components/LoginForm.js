@@ -42,11 +42,14 @@ function LoginForm(){
             // Debugging
             if (!jwt) {
                 console.error("JWT token is undefined or empty. Check backend response.");
-            }
-            localStorage.setItem('token', jwt); // Store JWT token
+            }else {
 
-            // Debug token storage
-            console.log("Saved token in localStorage:", localStorage.getItem('token'));
+                localStorage.setItem('token', jwt); // Store JWT token
+
+                // Debug token storage
+                console.log("Saved token in localStorage:", localStorage.getItem('token'));
+            }
+            
 
 
 
