@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useAuth } from './AuthProvider'; // Import useAuth to use the context
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(){
@@ -11,6 +11,9 @@ function LoginForm(){
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate(); // Hook to handle navigation
+
+    // Destructure setToken from useAuth to update the token
+    const { setToken } = useAuth();
     
     const handleSubmit = async (e) =>{
 
@@ -28,9 +31,9 @@ function LoginForm(){
                     
                 }
             });
-            // START OF WORKING CODE
-            // Handle successful login
-            console.log(response.data);
+            console.log("Full response:", response); // Debug the full response
+
+            console.log("Response data:", response.data); // Debugging the response data
 
             // Debugging step to log the received token
             console.log("Received JWT token:", response.data.jwt);
@@ -40,14 +43,19 @@ function LoginForm(){
             const { jwt } = response.data; // Extract JWT token
             
             // Debugging
-            if (!jwt) {
-                console.error("JWT token is undefined or empty. Check backend response.");
+            if (jwt) {
+                // Using the setToken method from AuthProvider
+                setToken(jwt);
+                console.log("Token set:", jwt); // Debug
+                
+                // Adding a slight delay to ensure token is stored before redirecting
+                setTimeout(() => {
+                navigate('/profile'); 
+            }, 200);
             }else {
 
-                localStorage.setItem('token', jwt); // Store JWT token
+                console.error("JWT token is undefined or empty. Check backend response.");
 
-                // Debug token storage
-                console.log("Saved token in localStorage:", localStorage.getItem('token'));
             }
             
 
@@ -56,10 +64,7 @@ function LoginForm(){
 
             // navigate('/profile'); // Redirect to profile page
 
-            // Adding a slight delay to ensure token is stored before redirecting
-            setTimeout(() => {
-                navigate('/profile'); 
-            }, 200);
+            
             // END OF WORKING CODE
 
             
@@ -70,6 +75,9 @@ function LoginForm(){
         } catch(error){
             // Error handling
             console.error('Error loggin in!', error);
+            if (error.response) {
+                console.error('Error details:', error.response.data);
+            }
         }
 
     };
