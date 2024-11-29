@@ -34,6 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         throws ServletException, IOException{
         String authorizationHeader = request.getHeader("Authorization");
 
+        // Debugging step to log the incoming Authorization header
+        System.out.println("Authorization header: " + authorizationHeader);
+
         String username = null;
         String jwt = null;
 
@@ -52,6 +55,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             if (authorizationHeader.length() > 7) {
                 jwt = authorizationHeader.substring(7);
+
+                // Debugging step to log the extracted token
+                System.out.println("Extracted JWT token from header: " + jwt);
+
                 try {
                     username = jwtUtil.extractUsername(jwt);
                     System.out.println("Extracted username from JWT: " + username);
