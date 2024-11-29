@@ -60,7 +60,7 @@ public class SecurityConfig {
     public UrlBasedCorsConfigurationSource corsConfigurationSource(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*"); // Allow all origins, can specify frontend domain instead
+        config.addAllowedOriginPattern("\"http://localhost:8080\""); // Allow all origins, can specify frontend domain instead
         config.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*"); // Allow GET, POST, PUT, DELETE, etc;

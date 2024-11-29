@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuth } from './AuthProvider'; // Import useAuth to use the context
+import { useAuth } from "../provider/authProvider";
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(){
@@ -14,6 +14,10 @@ function LoginForm(){
 
     // Destructure setToken from useAuth to update the token
     const { setToken } = useAuth();
+    
+
+
+
     
     const handleSubmit = async (e) =>{
 
@@ -45,6 +49,7 @@ function LoginForm(){
             // Debugging
             if (jwt) {
                 // Using the setToken method from AuthProvider
+                
                 setToken(jwt);
                 console.log("Token set:", jwt); // Debug
                 

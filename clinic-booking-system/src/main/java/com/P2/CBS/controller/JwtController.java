@@ -45,7 +45,7 @@ public class JwtController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
 
         // Generate JWT token
-        String jwt = jwtUtil.generateToken(userDetails);
+        final String jwt = jwtUtil.generateToken(userDetails);
 
         // Debugging step to log generated JWT
         System.out.println("Generated JWT token: " + jwt);
