@@ -42,10 +42,13 @@ public class JwtController {
         }
 
         // Load user details from the UserDetailsService
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
 
         // Generate JWT token
-        final String jwt = jwtUtil.generateToken(userDetails);
+        String jwt = jwtUtil.generateToken(userDetails);
+
+        // Debugging step to log generated JWT
+        System.out.println("Generated JWT token: " + jwt);
 
         // Return the token in the response
         return ResponseEntity.ok(new AuthenticationResponse(jwt));

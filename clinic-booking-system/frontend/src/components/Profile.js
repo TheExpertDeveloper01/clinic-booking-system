@@ -23,7 +23,7 @@ function Profile() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            console.log('Using token:', token); // Add log to verify token
+            console.log('Token used for profile request:', token); // Add log to verify token
 
             const response = await axios.put('http://localhost:8080/users/profile', user, {
                 headers: {

@@ -32,11 +32,22 @@ function LoginForm(){
             // Handle successful login
             console.log(response.data);
 
-            
+            // Debugging step to log the received token
+            console.log("Received JWT token:", response.data.jwt);
+
             // localStorage.setItem('token', response.data.token); // Store JWT token
 
             const { jwt } = response.data; // Extract JWT token
+            
+            // Debugging
+            if (!jwt) {
+                console.error("JWT token is undefined or empty. Check backend response.");
+            }
             localStorage.setItem('token', jwt); // Store JWT token
+
+            // Debug token storage
+            console.log("Saved token in localStorage:", localStorage.getItem('token'));
+
 
 
 
