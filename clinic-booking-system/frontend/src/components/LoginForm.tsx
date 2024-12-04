@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
 import { useAuth } from "../provider/authProvider";
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ const LoginForm: React.FC = () => {
             }
         } catch (error) {
             console.error('Error logging in!', error);
-            if (error.repsonse){
+            if (error.response){
                 console.error('Error details', error.response.data);
             }
         }
