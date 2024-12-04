@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/LoginForm.tsx';
 import RegisterForm from './components/RegisterForm';
 import CoolNavbar from './components/CoolNavbar';
 import NifftyCarousel from './components/NifftyCarousel';
 import Profile from './components/Profile';
-import AuthProvider from "./provider/authProvider";
+import AuthProvider from "./provider/authProvider.tsx";
 
 
 

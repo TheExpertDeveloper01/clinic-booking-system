@@ -1,7 +1,10 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
-import { useAuth } from "../provider/authProvider";
+import { useAuth } from "../provider/authProvider.tsx";
 import { useNavigate } from 'react-router-dom';
+//import { AuthProvider } from './provider/authProvider.tsx';
+
+
 
 const LoginForm: React.FC = () => {
     const [username, setUsername] = useState<string>('');
