@@ -1,127 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../provider/authProvider.tsx';
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { useAuth } from "./provider/authProvider.js";
 
 
 
-function Profile() {
-    const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        patientId: ''
-    });
+// function Profile() {
+//     const [user, setUser] = useState({
+//         firstName: '',
+//         lastName: '',
+//         email: '',
+//         patientId: ''
+//     });
 
-    const [editMode, setEditMode] = useState(false);
+//     const [editMode, setEditMode] = useState(false);
 
-    const handleChange = (e) => {
-                const { name, value } = e.target;
-                setUser({ ...user, [name]: value });
-            };
+//     const handleChange = (e) => {
+//                 const { name, value } = e.target;
+//                 setUser({ ...user, [name]: value });
+//             };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const token = localStorage.getItem('token');
-            console.log('Token used for profile request:', token); // Add log to verify token
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         try {
+//             const token = localStorage.getItem('token');
+//             console.log('Token used for profile request:', token); // Add log to verify token
 
-            const response = await axios.put('http://localhost:8080/users/profile', user, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization':`Bearer ${token}`,
-                },
-            });
-            console.log("User data updated successfully: ", response.data);
-            setEditMode(false);
+//             const response = await axios.put('http://localhost:8080/users/profile', user, {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'Authorization':`Bearer ${token}`,
+//                 },
+//             });
+//             console.log("User data updated successfully: ", response.data);
+//             setEditMode(false);
 
-        } catch (error) {
-            console.error('Error updating user data:', error);
-        }
-    };
+//         } catch (error) {
+//             console.error('Error updating user data:', error);
+//         }
+//     };
 
-    const { token } = useAuth();
+//     const { token } = useAuth();
 
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if(!token) {
-                console.error('Token is not available.');
-                return;
-            }
+//     useEffect(() => {
+//         const fetchUserData = async () => {
+//             if(!token) {
+//                 console.error('Token is not available.');
+//                 return;
+//             }
 
-            try {
-                const response = await axios.get('http://localhost:8080/users/profile');
-                setUser(response.data);
+//             try {
+//                 const response = await axios.get('http://localhost:8080/users/profile');
+//                 setUser(response.data);
 
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
+//             } catch (error) {
+//                 console.error('Error fetching user data:', error);
+//             }
+//         };
 
         
-            fetchUserData();
+//             fetchUserData();
         
-    }, [token]);
+//     }, [token]);
 
 
-    return(
-                <div className="profile-container">
-                    <h2>Profile Information</h2>
-                    {!editMode ? (
+//     return(
+//                 <div className="profile-container">
+//                     <h2>Profile Information</h2>
+//                     {!editMode ? (
         
-                        <div>
-                            <p><strong>Patient Id:</strong> {user.patientId}</p>
-                            <p><strong>First Name:</strong> {user.firstName}</p>
-                            <p><strong>lastName:</strong> {user.lastName}</p>
-                            <p><strong>email:</strong> {user.email}</p>
-                            <button onClick={() => setEditMode(true)}>Edit Profile</button>
-                        </div>
+//                         <div>
+//                             <p><strong>Patient Id:</strong> {user.patientId}</p>
+//                             <p><strong>First Name:</strong> {user.firstName}</p>
+//                             <p><strong>lastName:</strong> {user.lastName}</p>
+//                             <p><strong>email:</strong> {user.email}</p>
+//                             <button onClick={() => setEditMode(true)}>Edit Profile</button>
+//                         </div>
                         
-                    ) : (
+//                     ) : (
         
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                First Name:
-                                <input
-                                type="text"
-                                name="firstName"
-                                value={user.firstName}
-                                onChange={handleChange}
-                                />
-                            </label>
-                            <label>
-                                Last Name:
-                                <input
-                                type="text"
-                                name="lastName"
-                                value={user.lastName}
-                                onChange={handleChange}
-                                />
-                            </label>
-                            <label>
-                                Email:
-                                <input
-                                type="email"
-                                name="email"
-                                value={user.email}
-                                onChange={handleChange}
-                                />
-                            </label>
-                            <button type="submit">Save</button>
-                            <button onClick={() => setEditMode(false)}>Cancel</button>
-        
-        
-        
-                        </form>
+//                         <form onSubmit={handleSubmit}>
+//                             <label>
+//                                 First Name:
+//                                 <input
+//                                 type="text"
+//                                 name="firstName"
+//                                 value={user.firstName}
+//                                 onChange={handleChange}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Last Name:
+//                                 <input
+//                                 type="text"
+//                                 name="lastName"
+//                                 value={user.lastName}
+//                                 onChange={handleChange}
+//                                 />
+//                             </label>
+//                             <label>
+//                                 Email:
+//                                 <input
+//                                 type="email"
+//                                 name="email"
+//                                 value={user.email}
+//                                 onChange={handleChange}
+//                                 />
+//                             </label>
+//                             <button type="submit">Save</button>
+//                             <button onClick={() => setEditMode(false)}>Cancel</button>
         
         
         
-                    )}
-                </div>
-            );
-}
+//                         </form>
+        
+        
+        
+//                     )}
+//                 </div>
+//             );
+// }
 
-export default Profile;
+// export default Profile;
 
 
 

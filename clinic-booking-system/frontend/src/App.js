@@ -1,6 +1,6 @@
 import React from 'react';
 //import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from './components/LoginForm.tsx';
+//import LoginForm from './components/LoginForm.tsx';
 import RegisterForm from './components/RegisterForm';
 //import CoolNavbar from './components/CoolNavbar';
 import NifftyCarousel from './components/NifftyCarousel';
@@ -17,9 +17,14 @@ import './App.css';
 function App(){
 
 return (
-  <AuthProvider>
-    <Routes />
-  </AuthProvider>
+  <div>
+    <NifftyCarousel />
+    <AuthProvider>
+  <Routes />
+  
+</AuthProvider></div>
+  
+  
 );
 }
 
@@ -48,7 +53,7 @@ export default App;
 
   
 // </div>
-// {/* <NifftyCarousel/> */}
+// 
 // </Router>
 // </AuthProvider>
 

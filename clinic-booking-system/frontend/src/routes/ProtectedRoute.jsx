@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 
-export const ProtectedRoute = () => {
+const ProtectedRoute = () => {
     const { token } = useAuth();
 
     // If the user is not authenticated, redirect to login page
@@ -11,4 +11,6 @@ export const ProtectedRoute = () => {
 
     // If authenticated, render child routes
     return <Outlet />;
-}
+};
+
+export default ProtectedRoute;
