@@ -1,3 +1,63 @@
+import axios from "axios";
+import { 
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
+
+// This will create an empty context object that will share the authentication state and functions betweeen components
+const AuthContext = createContext();
+
+// Following component serves as the provider for the authentication context
+// Receives children as a prop, which represents the child components that will have access to the authentication context.
+const AuthProvider = ({ children }) => {
+    
+    // The token represents the authentication token
+    // it retrieves the token value from the local storage if it exists
+    const [token, setToken_] = useState(localStorage.getItem("token"));
+
+    // Update the authentication token and stores in the local storage
+    const setToken = (newToken) => {
+        setToken_(newToken);
+    };
+
+    // Set the default authorisation header in axios and store value in local storage
+    useEffect(() => {
+        if (token) {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+            localStorage.setItem('token', token);
+        } else {
+            delete axios.defaults.headers.common["Authorization"];
+            localStorage.removeItem('token')
+        }
+    }, [token]);
+
+    // Memomised context value
+    const contextValue = useMemo(
+        () => ({
+            token,
+            setToken,
+        }),
+        [token]
+    );
+
+    // Provide authentication context to the child component
+    return(
+        <AuthContext.Provider value ={contextValue}>
+            {children}
+        </AuthContext.Provider>
+    )
+};
+
+export const useAuth = () =>  {
+    return useContext(AuthContext);
+};
+
+export default AuthProvider;
+
+
 // import axios from 'axios';
 // import React, { createContext, useContext, useMemo, useState, useEffect, ReactNode } from 'react';
 
