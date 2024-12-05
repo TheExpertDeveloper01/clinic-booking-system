@@ -1,59 +1,59 @@
-import axios from 'axios';
-import React, { createContext, useContext, useMemo, useState, useEffect, ReactNode } from 'react';
+// import axios from 'axios';
+// import React, { createContext, useContext, useMemo, useState, useEffect, ReactNode } from 'react';
 
-interface AuthContextType {
-    token: string | null;
-    setToken: (token: string | null) => void;
-}
+// interface AuthContextType {
+//     token: string | null;
+//     setToken: (token: string | null) => void;
+// }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+// const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-interface AuthProviderProps {
-    children: ReactNode;
-}
+// interface AuthProviderProps {
+//     children: ReactNode;
+// }
 
-const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    // Initialise token from localStorage on first loaf
-    const [token, setToken_] = useState<string | null>(() => {
-        return localStorage.getItem("token") || null;
-    });
+// const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+//     // Initialise token from localStorage on first loaf
+//     const [token, setToken_] = useState<string | null>(() => {
+//         return localStorage.getItem("token") || null;
+//     });
 
-    const setToken = (newToken: string | null) => {
-        if (newToken) {
-            localStorage.setItem('token', newToken);
-            setToken_(newToken);
-        } else {
-            localStorage.removeItem('token');
-            setToken_(null);
-        }
-    };
+//     const setToken = (newToken: string | null) => {
+//         if (newToken) {
+//             localStorage.setItem('token', newToken);
+//             setToken_(newToken);
+//         } else {
+//             localStorage.removeItem('token');
+//             setToken_(null);
+//         }
+//     };
 
-    useEffect(() => {
-        if (token) {
-            console.log("Setting default Authorization header:", token);
-            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-        } else{
-            delete axios.defaults.headers.common["Authorization"];
-        }
-    }, [token]);
+//     useEffect(() => {
+//         if (token) {
+//             console.log("Setting default Authorization header:", token);
+//             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+//         } else{
+//             delete axios.defaults.headers.common["Authorization"];
+//         }
+//     }, [token]);
 
-    // Memmoised value of the authentication context
-    const contextValue = useMemo(() => ({ token, setToken }), [token]);
+//     // Memmoised value of the authentication context
+//     const contextValue = useMemo(() => ({ token, setToken }), [token]);
 
-    return (
-        <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-    );
-};
+//     return (
+//         <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+//     );
+// };
 
-export const useAuth = (): AuthContextType => {
-    const context = useContext(AuthContext);
-    if (context === undefined){
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
-};
+// export const useAuth = (): AuthContextType => {
+//     const context = useContext(AuthContext);
+//     if (context === undefined){
+//         throw new Error('useAuth must be used within an AuthProvider');
+//     }
+//     return context;
+// };
 
-export default AuthProvider;
+// export default AuthProvider;
 
 
 
