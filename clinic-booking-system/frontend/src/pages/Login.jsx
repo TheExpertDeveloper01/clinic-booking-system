@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import React, { useEffect, useState, FormEvent } from 'react';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -10,16 +11,27 @@ const Login = () => {
     const { setToken } = useAuth();
     const navigate = useNavigate();
 
-    const handleLogin = (e: FormEvent) => {
+    const handleLogin = async(e) => {
         e.preventDefault(); // Prevent page refresh
 
+        try{
+            const response = await axios.post('http://localhost:8080/auth/login', {
+                email: username,
+                password: password
+            });
 
-        // Simulate login and set token
-        setToken("this is a test token");
+            // Simulate login and set token
+        setToken(response.data);
         navigate("/", { replace: true });
+
+        } catch (error) {
+            console.error("Login failed:", error);
+            alert("Invalid credentials");
+        }
+        
+
     };
 
-    
 
     return (
         <form onSubmit={handleLogin}>
