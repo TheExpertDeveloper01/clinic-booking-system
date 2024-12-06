@@ -5,22 +5,22 @@ import CoolNavbar from "../components/CoolNavbar";
 
 const Home = () => {
     const { setToken } = useAuth();
-    const naviagte = useNavigate();
+    // const navigate = useNavigate();
 
     const handleHome = () => {
         setToken("this is a test token");
-        naviagte("/", { replace: true });
+        // navigate("/", { replace: true });
     };
 
-    setTimeout(() => {
-        handleHome();
+    // setTimeout(() => {
+    //     handleHome();
 
-    }, 3 * 1000);
+    // }, 3 * 1000);
 
     return (
         <div> 
             
-            <CoolNavbar/>
+            {/* <CoolNavbar/> */}
             </div>
     
     );

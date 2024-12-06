@@ -17,7 +17,7 @@ function App(){
 return (
   <BrowserRouter>
   <AuthProvider>
-    {/* <CoolNavbar /> */}
+    <CoolNavbar />
     
     <Routes>
       {publicRoutes}
