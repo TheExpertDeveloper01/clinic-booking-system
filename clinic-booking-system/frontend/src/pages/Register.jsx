@@ -2,21 +2,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 
 
-const Login = () => {
+const Register = () => {
     const { setToken } = useAuth();
     const naviagte = useNavigate();
 
-    const handleLogin = () => {
+    const handleRegister = () => {
         setToken("this is a test token");
         naviagte("/", { replace: true });
     };
 
     setTimeout(() => {
-        handleLogin();
+        handleRegister();
 
     }, 3 * 1000);
 
-    return <div>Login Page</div>;
+    return <div>Register</div>;
 };
 
-export default Login;
+export default Register;

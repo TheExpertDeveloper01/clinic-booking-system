@@ -1,29 +1,31 @@
 import React from 'react';
-//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 //import LoginForm from './components/LoginForm.tsx';
-import RegisterForm from './components/RegisterForm';
-//import CoolNavbar from './components/CoolNavbar';
+// import RegisterForm from './components/RegisterForm';
+import CoolNavbar from './components/CoolNavbar';
 import NifftyCarousel from './components/NifftyCarousel';
-import Profile from './components/Profile';
+// import Profile from './components/Profile';
 //import AuthProvider from "./provider/authProvider.tsx";
 
 import AuthProvider from "./provider/authProvider";
-import Routes from "./routes";
-
-
+import { publicRoutes, protectedRoutes } from "./routes/index";
 
 import './App.css';
 
 function App(){
 
 return (
-  <div>
+  <BrowserRouter>
+  <AuthProvider>
+    {/* <CoolNavbar /> */}
+    
+    <Routes>
+      {publicRoutes}
+      {protectedRoutes}
+    </Routes>
     <NifftyCarousel />
-    <AuthProvider>
-  <Routes />
-  
-</AuthProvider></div>
-  
+  </AuthProvider>
+  </BrowserRouter>
   
 );
 }
